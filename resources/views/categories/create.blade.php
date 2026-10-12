@@ -1,0 +1,31 @@
+@extends('layouts.app')
+
+@section('title', 'Add Category')
+@section('page-title', 'Add Equipment Category')
+
+@section('content')
+<div class="card">
+    <form action="{{ route('categories.store') }}" method="POST">
+        @csrf
+
+        <div class="form-stack">
+        <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+            @error('name') <div class="field-error">{{ $message }}</div> @enderror
+        </div>
+
+        <div class="form-stack">
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description">{{ old('description') }}</textarea>
+        </div>
+
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Category</button>
+            <a href="{{ route('categories.index') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+@endsection
